@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Thiệp 20/10 💖</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      font-family: "Segoe UI", cursive;
+      background: linear-gradient(135deg, #ffd6e8, #fff0f5, #ffeaf0);
+      overflow: hidden;
+    }
+
+    /* 🌸 TRANG MỞ ĐẦU */
+    .intro {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      background: linear-gradient(135deg, #ffd6e8, #fff0f5, #ffeaf0);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .intro-cat {
+      position: absolute;
+      width: 120px;
+      animation: catDance 1.5s ease-in-out infinite;
+      filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+    }
+
+    .intro-cat.left { left: 10%; bottom: 18%; }
+    .intro-cat.right { right: 10%; bottom: 18%; transform: scaleX(-1); }
+
+    @keyframes catDance {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .intro-text {
+      font-size: 1.8rem;
+      color: #ff3c93;
+      font-weight: bold;
+      text-shadow: 0 0 15px rgba(255, 105, 180, 0.5);
+      animation: textGlow 2s ease-in-out infinite;
+      cursor: pointer;
+      z-index: 2;
+    }
+
+    .intro-text span {
+      display: inline-block;
+      animation: textShake 2.5s ease-in-out infinite;
+    }
+
+    @keyframes textShake {
+      0%, 100% { transform: rotate(0); }
+      50% { transform: rotate(3deg); }
+    }
+
+    @keyframes textGlow {
+      0%, 100% { text-shadow: 0 0 10px rgba(255, 105, 180, 0.6); }
+      50% { text-shadow: 0 0 25px rgba(255, 105, 180, 0.9); }
+    }
+
+    .decorations {
+      position: absolute;
+      bottom: 100px;
+      display: flex;
+      gap: 15px;
+      font-size: 2rem;
+      animation: floatDecor 4s ease-in-out infinite;
+    }
+
+    @keyframes floatDecor {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .sparkle { animation: sparkleBlink 2s infinite ease-in-out; }
+
+    @keyframes sparkleBlink {
+      0%,100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(1.3); }
+    }
+
+    /* 💌 THƯ */
+    .card {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0);
+      width: 420px;
+      background: #fff0f6;
+      border-radius: 25px;
+      padding: 40px 30px;
+      box-shadow: 0 0 30px rgba(255, 105, 180, 0.4);
+      text-align: center;
+      opacity: 0;
+      transition: transform 0.8s ease, opacity 0.8s ease;
+      z-index: 3;
+    }
+
+    .card.show { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+
+    .card h2 { color: #d63384; margin-bottom: 20px; font-size: 1.6rem; }
+
+    .card p {
+      color: #444;
+      font-size: 1.1rem;
+      line-height: 1.6;
+      white-space: pre-line;
+    }
+
+    .card-footer {
+      margin-top: 18px;
+      font-size: 1.1rem;
+      color: #d63384;
+      animation: fadeIn 2s ease-in;
+    }
+
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+    /* 🐱 Mèo hai bên thư - to hơn và xa ra ngoài */
+    .cat {
+    position: absolute;
+    width: 220px;
+    display: none;
+    animation: catBounce 1.2s infinite ease-in-out;
+    z-index: 3;
+    filter: drop-shadow(0 6px 10px rgba(0,0,0,0.3));
+    }
+
+    .cat-left {
+    left: 5%;
+    top: 55%;
+    transform: translateY(-50%) scale(1.05);
+    }
+
+    .cat-right {
+    right: 5%;
+    top: 55%;
+    transform: translateY(-50%) scaleX(-1) scale(1.05);
+    }
+
+    @keyframes catBounce {
+    0%, 100% { transform: translateY(0) scale(1.05); }
+    50% { transform: translateY(-15px) scale(1.05); }
+    }
+
+
+    /* 🎉 Confetti */
+    .confetti { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 5; }
+
+    .confetti div {
+      position: absolute;
+      width: 10px; height: 10px;
+      background: hsl(var(--hue), 70%, 60%);
+      animation: fall 4s linear infinite;
+    }
+
+    @keyframes fall {
+      0% { transform: translateY(-10%) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(110vh) rotate(720deg); opacity: 0; }
+    }
+
+    /* ❤️ Trái tim nảy lên */
+    .heart-bounce {
+      position: fixed;
+      bottom: -20px;
+      font-size: 1.5rem;
+      color: #ff4da6;
+      animation: bounceHeart 3s ease-in-out forwards;
+      z-index: 4;
+    }
+
+    @keyframes bounceHeart {
+      0% { transform: translateY(0) scale(1); opacity: 1; }
+      50% { transform: translateY(-60vh) scale(1.3); opacity: 1; }
+      100% { transform: translateY(-100vh) scale(0.7); opacity: 0; }
+    }
+
+    /* 💖 Chữ Happy Women’s Day */
+    .heart-title {
+      position: absolute;
+      top: 10%;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 2rem;
+      font-weight: bold;
+      color: #ff1493;
+      text-shadow: 0 0 20px rgba(255, 105, 180, 0.8);
+      display: none;
+      animation: glowTitle 2s ease-in-out infinite;
+      z-index: 4;
+    }
+
+    @keyframes glowTitle {
+      0%,100% { opacity: 1; transform: translateX(-50%) scale(1); }
+      50% { opacity: 0.8; transform: translateX(-50%) scale(1.05); }
+    }
+    .card {
+    width: 480px;  /* tăng nhẹ chiều rộng */
+    max-width: 90vw;
+    }
+
+  </style>
+</head>
+<body>
+  <!-- 🌸 TRANG MỞ ĐẦU -->
+  <div class="intro" id="intro">
+    <img src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExczM1emc2azlvaGlubHl5eThrdm02a2NiMjQ5NGVzb3JyNTcwbmxrdiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/Q5Ra0QQUpPYdlFmFrj/giphy.gif" alt="cat left" class="intro-cat left">
+    <img src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExczM1emc2azlvaGlubHl5eThrdm02a2NiMjQ5NGVzb3JyNTcwbmxrdiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/Q5Ra0QQUpPYdlFmFrj/giphy.gif" alt="cat right" class="intro-cat right">
+    <div class="intro-text" id="introText">🐱 <span>Click vào đây để nhận món quà đặc biệt</span> 🐱</div>
+    <div class="decorations">
+      <span class="sparkle">✨</span><span class="heart">💖</span><span class="flower">🌸</span><span class="sparkle">✨</span>
+    </div>
+  </div>
+
+  <!-- 💌 THƯ -->
+  <div class="card" id="card">
+    <h2>💐 Thư chúc mừng 💐</h2>
+    <p id="message"></p>
+    <div class="card-footer">💖 Chúc bạn một ngày thật tươi đẹp 💖</div>
+  </div>
+
+  <div class="heart-title" id="heartTitle">💖 Happy Women's Day 20/10 💖</div>
+  <img src="https://media.giphy.com/media/MDJ9IbxxvDUQM/giphy.gif" class="cat cat-left" id="catLeft">
+  <img src="https://media.giphy.com/media/MDJ9IbxxvDUQM/giphy.gif" class="cat cat-right" id="catRight">
+  <div class="confetti" id="confetti"></div>
+  <audio id="music" src="https://cdn.pixabay.com/audio/2023/03/25/audio_73e5c2b9f5.mp3"></audio>
+
+  <script>
+    const intro = document.getElementById("intro");
+    const introText = document.getElementById("introText");
+    const card = document.getElementById("card");
+    const confetti = document.getElementById("confetti");
+    const messageEl = document.getElementById("message");
+    const heartTitle = document.getElementById("heartTitle");
+    const catLeft = document.getElementById("catLeft");
+    const catRight = document.getElementById("catRight");
+    const music = document.getElementById("music");
+
+    const message = `💖 Chúc bạn luôn xinh đẹp, dịu dàng và rạng rỡ như đóa hoa hồng 🌹
+✨ Mỗi ngày đều là một món quà – hãy cười thật tươi và yêu bản thân mình nhiều hơn nhé!
+💐 Chúc bạn có một ngày 20/10 thật ngọt ngào, tràn đầy hạnh phúc và đáng nhớ! 🌸`;
+
+    function typeText(text, element, speed = 40) {
+      let i = 0;
+      function typing() {
+        if (i < text.length) {
+          element.textContent += text.charAt(i);
+          i++;
+          setTimeout(typing, speed);
+        }
+      }
+      typing();
+    }
+
+    function createConfetti() {
+      for (let i = 0; i < 50; i++) {
+        const c = document.createElement("div");
+        c.style.setProperty("--hue", Math.random() * 360);
+        c.style.left = Math.random() * 100 + "vw";
+        c.style.animationDuration = 3 + Math.random() * 2 + "s";
+        c.style.opacity = Math.random();
+        confetti.appendChild(c);
+        setTimeout(() => c.remove(), 5000);
+      }
+    }
+
+    function flowerFall() {
+      const petal = document.createElement("div");
+      petal.innerText = "🌸";
+      petal.style.position = "fixed";
+      petal.style.left = Math.random() * 100 + "vw";
+      petal.style.top = "-10px";
+      petal.style.fontSize = 20 + Math.random() * 15 + "px";
+      petal.style.opacity = Math.random();
+      petal.style.animation = "petalFall 6s linear forwards";
+      document.body.appendChild(petal);
+      setTimeout(() => petal.remove(), 6000);
+    }
+    setInterval(flowerFall, 600);
+
+    // ❤️ Tạo trái tim nảy
+    function createHearts() {
+      const heart = document.createElement("div");
+      heart.classList.add("heart-bounce");
+      heart.innerText = "💖";
+      heart.style.left = Math.random() * 100 + "vw";
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 3000);
+    }
+
+    // Mở thư
+    function showCard() {
+      intro.style.display = "none";
+      heartTitle.style.display = "block";
+      card.classList.add("show");
+      catLeft.style.display = "block";
+      catRight.style.display = "block";
+      createConfetti();
+      setInterval(createHearts, 600);
+      music.volume = 0;
+      music.play();
+      let fadeIn = setInterval(() => {
+        if (music.volume < 1) music.volume += 0.05;
+        else clearInterval(fadeIn);
+      }, 150);
+      typeText(message, messageEl, 40);
+    }
+
+    introText.addEventListener("click", showCard);
+  </script>
+</body>
+</html>
