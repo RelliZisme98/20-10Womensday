@@ -8,10 +8,28 @@
     body {
       margin: 0;
       padding: 0;
-      height: 100vh;
+      /* use CSS var to mitigate mobile 100vh address-bar issues */
+      height: calc(var(--vh, 1vh) * 100);
       font-family: "Segoe UI", cursive;
       background: linear-gradient(135deg, #ffd6e8, #fff0f5, #ffeaf0);
       overflow: hidden;
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
+    }
+    
+    /* Improve tap target for intro button */
+    .intro-text {
+      font-size: 1.8rem;
+      color: #ff3c93;
+      font-weight: bold;
+      text-shadow: 0 0 15px rgba(255, 105, 180, 0.5);
+      animation: textGlow 2s ease-in-out infinite;
+      cursor: pointer;
+      z-index: 2;
+      padding: 12px 18px;
+      border-radius: 10px;
+      user-select: none;
+      -webkit-user-select: none;
     }
 
     /* 🌸 TRANG MỞ ĐẦU */
@@ -51,6 +69,10 @@
       animation: textGlow 2s ease-in-out infinite;
       cursor: pointer;
       z-index: 2;
+      padding: 12px 18px;
+      border-radius: 10px;
+      user-select: none;
+      -webkit-user-select: none;
     }
 
     .intro-text span {
@@ -209,6 +231,39 @@
     max-width: 90vw;
     }
 
+    /* Responsive: phones and small tablets */
+    @media (max-width: 600px) {
+      .intro-cat { width: 80px; left: 6%; bottom: 14%; }
+      .intro-cat.right { right: 6%; }
+      .intro-text { font-size: 1.1rem; }
+      .decorations { bottom: 70px; font-size: 1.4rem; gap: 10px; }
+      .card {
+        width: 92vw;
+        padding: 22px 18px;
+        border-radius: 18px;
+      }
+      .card h2 { font-size: 1.25rem; margin-bottom: 12px; }
+      .card p { font-size: 1rem; line-height: 1.45; }
+      .cat { width: 140px; top: 62%; }
+      .cat-left { left: 3%; }
+      .cat-right { right: 3%; }
+      .heart-title { font-size: 1.2rem; top: 6%; display: block; }
+      .confetti div { width: 7px; height: 7px; }
+      .heart-bounce { font-size: 1.2rem; bottom: -10px; }
+      .decorations { animation-duration: 3.5s; }
+    }
+
+    /* Extra small screens / narrow phones */
+    @media (max-width: 400px) {
+      .intro-cat { width: 64px; bottom: 12%; }
+      .intro-text { font-size: 1rem; padding: 10px 14px; }
+      .card { padding: 18px 14px; }
+      .card h2 { font-size: 1.05rem; }
+      .card p { font-size: 0.95rem; }
+      .cat { width: 120px; }
+      .decorations { bottom: 60px; font-size: 1.1rem; gap: 8px; }
+      .confetti div { width: 6px; height: 6px; }
+    }
   </style>
 </head>
 <body>
@@ -236,6 +291,15 @@
   <audio id="music" src="https://cdn.pixabay.com/audio/2023/03/25/audio_73e5c2b9f5.mp3"></audio>
 
   <script>
+    // filepath: d:\CodeIdea\index.html
+    // set --vh to fix 100vh issues on mobile (address bar)
+    (function setVh() {
+      function applyVh() {
+        document.documentElement.style.setProperty('--vh', (window.innerHeight * 0.01) + 'px');
+      }
+      applyVh();
+      window.addEventListener('resize', applyVh);
+    })();
     const intro = document.getElementById("intro");
     const introText = document.getElementById("introText");
     const card = document.getElementById("card");
